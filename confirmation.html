@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Hey little one, this tells the browser we're using HTML and the language is English! -->
+    <meta charset="UTF-8">
+    <!-- This meta tag tells the browser to set up the view nicely on different screens, like on your tablet or phone. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The name of our story page, it's like the title of your favorite book! -->
+    <title>Order Confirmation - Astraronix</title>
+    <!-- Linking our pretty clothes (styles) so our page looks awesome! -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- This link brings in fun icons to use on our page, just like your favorite stickers! -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- The header is like the top of our store, where we say hello and show our logo! -->
+    <header>
+        <nav>
+            <!-- Our store's name in a fun, bold way! -->
+            <div class="logo">Astraronix</div>
+            <!-- Here are our special links you can click to explore more parts of our store! -->
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="cart.html" class="cart-icon">
+                    <!-- A little shopping cart icon for our goodies -->
+                    <i class="fas fa-shopping-cart"></i>
+                    <!-- The number showing how many items are in the cart, starting at 0 -->
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- The main area is our playground where the big message is shown! -->
+    <main>
+        <div class="confirmation">
+            <!-- A big checkmark icon to show success, like a happy smiley for finishing your homework! -->
+            <i class="fas fa-check-circle" style="font-size: 4rem; color: #2ecc71; margin-bottom: 1rem;"></i>
+            <!-- A huge thank you message for our lovely shopper -->
+            <h1>Thank you for purchasing from Astraronix!</h1>
+            <!-- A friendly message explaining that the order is placed and a follow-up email is coming soon -->
+            <p>Your order has been successfully placed. We'll send you a confirmation email with your order details shortly.</p>
+            <!-- A cute button that takes you back to the homepage, like coming back to your favorite play area -->
+            <a href="index.html" class="return-home">Return to Homepage</a>
+        </div>
+    </main>
+
+    <!-- The footer is like the end of our story, where we share a bit more about our store and how to contact us -->
+    <footer>
+        <div class="footer-content">
+            <!-- About Astraronix section for learning a little bit about our fun store -->
+            <div class="footer-section">
+                <h4>About Astraronix</h4>
+                <p>Your premium destination for fashion and lifestyle products.</p>
+            </div>
+            <!-- Quick Links section to help you quickly visit other fun pages! -->
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+            <!-- Contact Us section, so you know how to get in touch if you need a little help -->
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: info@astraronix.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <!-- This part of the footer shows our little footer message with a copyright note -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Astraronix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hey little one, here's a fun script that counts the shopping cart items!
+
+        // This function gets the cart items from our computer's memory and calculates the total number of items.
+        function updateCartCount() {
+            // Retrieve the 'cart' data, or if it's missing, use an empty list.
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Add up the quantity of each item in the cart.
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            // Show the total items in the little shopping cart badge.
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        // This calls our fun function to update the cart count as soon as the page loads.
+        updateCartCount();
+    </script>
+</body>
+</html>

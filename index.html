@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  this is the head where we put all our secret instructions and important settings! -->
+    <meta charset="UTF-8"> <!-- This tells the browser how to show our special letters correctly -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes sure our page looks good on both big and small screens -->
+    <title>Astraronix - Modern Fashion Store</title> <!-- This is like giving our book a fun title so everyone knows what it's about -->
+    <link rel="stylesheet" href="styles.css"> <!-- Here, we are telling our page to wear pretty clothes from the stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Including fun icons for our page -->
+</head>
+<body>
+    <!-- Welcome to the playground where all the action happens! -->
+    <header>
+        <nav>
+            <!-- Our navigation bar, like a friendly guide showing the way -->
+            <div class="logo">
+                <!-- Showing our store's special picture -->
+                <img src="https://i.imgur.com/T7mH4Ly.png" alt="Astraronix Logo">
+            </div>
+            <div class="nav-links">
+                <!-- Navigation links that take you to different parts of the website -->
+                <a href="#home">Home</a>
+                <a href="cart.html" class="cart-icon">
+                    <!-- A little shopping cart icon that shows you how many goodies are in your cart -->
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span> <!-- Start with 0 items in the cart -->
+                </a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <!-- This is the magic hamburger icon that helps show and hide the links on small screens -->
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- The main stage where our cool store categories are displayed -->
+        <section class="categories" id="categories">
+            <h2>Astraronix Store</h2>
+            <!-- A grid showing different categories you can explore -->
+            <div class="category-grid">
+                <a href="products/shoes.html" class="category-card">
+                    <div class="category-image">
+                        <!-- A pretty picture of Shoes -->
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Shoes">
+                    </div>
+                    <h3>Shoes</h3>
+                    <!-- A cute little message about Shoes -->
+                    <p>Step into style with our collection of premium footwear</p>
+                </a>
+                <a href="products/clothes.html" class="category-card">
+                    <div class="category-image">
+                        <!-- A stylish image for Clothes -->
+                        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050" alt="Clothes">
+                    </div>
+                    <h3>Clothes</h3>
+                    <!-- Telling you how trendy our clothes are -->
+                    <p>Dress to impress with our trendy clothing collection</p>
+                </a>
+                <a href="products/bags.html" class="category-card">
+                    <div class="category-image">
+                        <!-- A cute picture of Bags -->
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62" alt="Bags">
+                    </div>
+                    <h3>Bags</h3>
+                    <!-- A little note saying bags are stylish and useful -->
+                    <p>Carry your essentials in style with our designer bags</p>
+                </a>
+                <a href="products/beddings.html" class="category-card">
+                    <div class="category-image">
+                        <!-- Showing you a cozy picture of Bedding -->
+                        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af" alt="Bedding">
+                    </div>
+                    <h3>Bedding</h3>
+                    <!-- This explains that our bedding is super comfy for sweet dreams -->
+                    <p>Sleep in comfort with our luxurious bedding collection</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- The back of our store where we share more info about ourselves -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Astraronix</h4>
+                <!-- A little message about our cool store -->
+                <p>Your premium destination for fashion and lifestyle products.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <!-- Listing out our fun categories again so you never get lost -->
+                <ul>
+                    <li><a href="products/shoes.html">Shoes</a></li>
+                    <li><a href="products/clothes.html">Clothes</a></li>
+                    <li><a href="products/bags.html">Bags</a></li>
+                    <li><a href="products/beddings.html">Bedding</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <!-- How to get in touch with us if you need a helping hand -->
+                <ul>
+                    <li>Email: info@astraronix.com</li>
+                    <li>Phone:  +254714748299</li>
+                    <li>Address: 123 Fashion Street, Nairobi</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <!-- A friendly reminder that our store is all wrapped up with love and care -->
+            <p>&copy; 2024 Astraronix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Here we have a little JavaScript spell to make some parts of our page come alive!
+        
+        // When you click the hamburger icon, it shows or hides the navigation links
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active'); // Toggle the "active" class to show or hide the links
+        });
+
+        // This little function updates the number of items in our shopping cart
+        function updateCartCount() {
+            // Look into the computer's toybox (localStorage) to find the cart items, or use an empty list if there are none
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Count the total number of items by adding up their quantities
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems; // Show the total on the page
+        }
+
+        // When our page loads, we run the updateCartCount function to display the current cart count
+        updateCartCount();
+    </script>
+</body>
+</html>

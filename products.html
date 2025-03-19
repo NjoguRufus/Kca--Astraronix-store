@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Hey little one, this tells the browser that we are writing an HTML story! -->
+    <meta charset="UTF-8">
+    <!-- This magic spell ensures all our letters and symbols look just right -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title of our webpage, like the name of your favorite storybook -->
+    <title>Products - Astraronix</title>
+    <!-- Linking our style rules so the page looks pretty and fun -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Adding some cool icons from Font Awesome for extra sparkle -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <!-- This is the top part of our page where the navigation magic happens -->
+        <nav>
+            <div class="logo">
+                <!-- Our special logo image that shows the Astraronix brand -->
+                <img src="https://i.imgur.com/T7mH4Ly.png" alt="Astraronix Logo">
+            </div>
+            <div class="nav-links">
+                <!-- Little links to lead you to the Home and Cart pages -->
+                <a href="index.html">Home</a>
+                <a href="cart.html" class="cart-icon">
+                    <!-- A cute little shopping cart icon -->
+                    <i class="fas fa-shopping-cart"></i>
+                    <!-- This number shows how many treasures (items) are in the cart -->
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Here is where the fun begins, welcome to the main playground! -->
+        <section class="products-section">
+            <!-- A big friendly greeting for our Products page -->
+            <h1 id="category-title">Products</h1>
+            <!-- A special grid where our products will dance onto the page -->
+            <div class="product-grid" id="product-grid">
+                <!-- Products will be dynamically inserted here by our magic script -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- This is the cozy footer where we share more about us and other links -->
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Astraronix</h4>
+                <!-- A sweet note about our wonderful store -->
+                <p>Your premium destination for fashion and lifestyle products.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <!-- Quick links for easy browsing of our site -->
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <!-- Ways to give us a buzz if you need help or want to say hi -->
+                <p>Email: info@astraronix.com</p>
+                <p>Phone: +254714748299</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <!-- A little message to say that all rights are held safe -->
+            <p>&copy; 2024 Astraronix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Linking our special JavaScript files that bring our page to life -->
+    <script src="products.js"></script>
+    <script>
+        // Let's check the URL for a category parameter to know which products to show
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category');
+
+        // If we have a category, update the title and the heading just like putting on a fancy hat!
+        if (category) {
+            document.title = `${category.charAt(0).toUpperCase() + category.slice(1)} - Astraronix`;
+            document.getElementById('category-title').textContent = 
+                `${category.charAt(0).toUpperCase() + category.slice(1)}`;
+        }
+
+        // This function is our magic wand that displays products on the page
+        function displayProducts() {
+            // Find our special grid where products will be shown
+            const productGrid = document.getElementById('product-grid');
+            // Get all the products for the chosen category, or an empty list if none found
+            const categoryProducts = products[category] || [];
+
+            // For every product, create a cute little card to show details
+            productGrid.innerHTML = categoryProducts.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- A pretty picture of the product -->
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <!-- The product's name, like its little title -->
+                        <h3 class="product-title">${product.name}</h3>
+                        <!-- A short and sweet description of the product -->
+                        <p class="product-description">${product.description}</p>
+                        <!-- Showing the price, like the cost of a yummy treat -->
+                        <p class="product-price">$${product.price.toFixed(2)}</p>
+                        <!-- A button that adds the product to our cart when clicked -->
+                        <button class="add-to-cart" onclick="addToCart('${product.id}', '${category}')">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // This function adds a product to our shopping cart
+        function addToCart(productId, category) {
+            // Get existing cart items from our memory, or start fresh with an empty list
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Find the product information using the provided id
+            const product = products[category].find(p => p.id === productId);
+            
+            // See if the product is already in the cart, like checking if you already have a toy
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                // If it's already there, just add one more to the count!
+                existingItem.quantity += 1;
+            } else {
+                // Otherwise, add the product with a quantity of one, like a brand new toy!
+                cart.push({
+                    ...product,
+                    category,
+                    quantity: 1
+                });
+            }
+            
+            // Save our updated cart back into the memory so we remember all our treasures
+            localStorage.setItem('cart', JSON.stringify(cart));
+            // And update the little number on the cart icon
+            updateCartCount();
+        }
+
+        // This function updates the number shown in our cart so we know how many items we have
+        function updateCartCount() {
+            // Get our current cart items, or start with an empty list if we have none
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Sum up all the quantities of each item in the cart
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            // Show this total on our cute cart badge
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        // When the page loads, check if we have a category and then show those products
+        if (category) {
+            displayProducts();
+        } else {
+            // If no category is passed in the URL, gently ask the user to select one
+            document.getElementById('product-grid').innerHTML = '<p>Please select a category.</p>';
+        }
+        // Update our cart count when the page starts so it's always correct!
+        updateCartCount();
+    </script>
+</body>
+</html>

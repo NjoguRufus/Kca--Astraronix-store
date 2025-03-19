@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Hey little one, this tells the browser: "I'm a webpage!" -->
+<head>
+    <!-- Head section: Here we put secret instructions and styles so our page looks pretty! -->
+    <meta charset="UTF-8">
+    <!-- This line makes sure all letters and symbols look just right -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This helps our webpage look good on both big screens and tiny phones -->
+    <title>Shopping Cart - Astraronix</title>
+    <!-- The title shows up on the browser tab, like the title of a storybook -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link to the CSS file so our page wears its pretty clothes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- This brings in fun icons (like a little shopping cart icon) for our page -->
+</head>
+<body>
+    <!-- Body: The cool playground where all the magic happens! -->
+    <header>
+        <!-- The top of our page, like the header of a story, where we show our logo and navigation links -->
+        <nav>
+            <!-- Navigation bar: Helps you move around our webpage -->
+            <div class="logo">
+                <!-- The store's logo, like a shiny badge for Astraronix -->
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Astraronix Logo">
+                    <!-- Image of our logo; click it to go back home! -->
+                </a>
+            </div>
+            <div class="nav-links">
+                <!-- Navigation links: Buttons to go to different parts of our website -->
+                <a href="index.html">Home</a>
+                <a href="cart.html" class="cart-icon">
+                    <!-- This link shows our shopping cart -->
+                    <i class="fas fa-shopping-cart"></i>
+                    <!-- The little shopping cart icon from our fun icon library -->
+                    <span class="cart-count">0</span>
+                    <!-- This number tells you how many items are in your cart, like counting your toys! -->
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Main section: The heart of our page where all the cool stuff happens! -->
+        <div class="cart-container">
+            <h1>Your Shopping Cart</h1>
+            <!-- Big headline to say "This is your shopping cart!" -->
+
+            <!-- Cart Items Container -->
+            <div id="cart-items">
+                <!-- This is a special box where your cart items will magically appear! -->
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <!-- Summary of your cart: Shows the subtotal, tax, and total amount -->
+                <div>
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">KSH 0</span>
+                    <!-- Here we see the total price of your items before tax -->
+                </div>
+                <div>
+                    <span>Tax (10%):</span>
+                    <span id="cart-tax">KSH 0</span>
+                    <!-- This shows the tax added to your items (like a little extra for magic dust) -->
+                </div>
+                <div class="total">
+                    <span>Total:</span>
+                    <span id="cart-total">KSH 0</span>
+                    <!-- This is the final total, like the big picture of your cost -->
+                </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <button class="checkout-btn" onclick="window.location.href='checkout.html'" id="checkout-btn">
+                Proceed to Checkout
+                <!-- When you click here, it will take you to the next part of your shopping adventure -->
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Footer: This is the back of our shop, where extra info is shared -->
+        <div class="footer-content">
+            <!-- Footer Content: Divided into little sections for info about us, our categories, and how to reach us -->
+            <div class="footer-section">
+                <h4>About Astraronix</h4>
+                <p>Your premium destination for fashion and lifestyle products.</p>
+                <!-- A little description about our amazing store -->
+            </div>
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <!-- A list of different product categories like shoes, clothes, bags, and bedding -->
+                    <li><a href="products/shoes.html">Shoes</a></li>
+                    <li><a href="products/clothes.html">Clothes</a></li>
+                    <li><a href="products/bags.html">Bags</a></li>
+                    <li><a href="products/beddings.html">Bedding</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <!-- How to get in touch with us if you need help -->
+                    <li>Email: info@astraronix.com</li>
+                    <li>Phone:  +254714748299</li>
+                    <li>Address: 123 Fashion Street, Nairobi</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <!-- This is the very bottom of our page, like the last page of a story -->
+            <p>&copy; 2024 Astraronix. All rights reserved.</p>
+            <!-- A little note saying all rights are kept safe -->
+        </div>
+    </footer>
+
+    <!-- Linking our external JavaScript file for extra magic on the page -->
+    <script src="script.js"></script>
+    <script>
+        // Baby magic time! Let's check if the cart is empty and update the checkout button.
+        // Disable checkout button if cart is empty
+        function updateCheckoutButton() {
+            const checkoutBtn = document.getElementById('checkout-btn');
+            // If our cart is like an empty toy box, make the button look sleepy and unclickable.
+            if (cart.length === 0) {
+                checkoutBtn.disabled = true;
+                checkoutBtn.style.opacity = '0.5'; // Make it look faded like a sleepy toy.
+                checkoutBtn.style.cursor = 'not-allowed'; // Change the cursor to show it's not clickable.
+            } else {
+                // If there are items, wake up the button so you can click it and check out!
+                checkoutBtn.disabled = false;
+                checkoutBtn.style.opacity = '1';
+                checkoutBtn.style.cursor = 'pointer';
+            }
+        }
+
+        // Update checkout button on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // When the page finishes loading, check the cart and update the button accordingly!
+            updateCheckoutButton();
+        });
+
+        // Update checkout button when cart changes
+        const originalUpdateCartDisplay = updateCartDisplay;
+        updateCartDisplay = function() {
+            // Every time the cart display updates, also refresh our checkout button's magic!
+            originalUpdateCartDisplay();
+            updateCheckoutButton();
+        };
+    </script>
+</body>
+</html>
