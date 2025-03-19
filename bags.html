@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bags - Astraronix</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="https://i.imgur.com/T7mH4Ly.png" alt="Astraronix Logo">
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="products-section">
+            <h1>Bags Collection</h1>
+            <div class="product-grid">
+                <!-- Bag 1 -->
+                <div class="product-card" data-id="bags-1">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" alt="Leather Tote Bag">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Leather Tote Bag</h3>
+                        <p class="product-description">Premium leather tote bag with spacious design</p>
+                        <p class="product-price">$149.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bag 2 -->
+                <div class="product-card" data-id="bags-2">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1622560480654-d96214fdc887" alt="Minimalist Backpack">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Minimalist Backpack</h3>
+                        <p class="product-description">Sleek and lightweight backpack for everyday use</p>
+                        <p class="product-price">$99.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bag 3 -->
+                <div class="product-card" data-id="bags-3">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1601924638867-1a6b8b9b0e9b" alt="Crossbody Sling Bag">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Crossbody Sling Bag</h3>
+                        <p class="product-description">Compact and stylish sling bag for on-the-go</p>
+                        <p class="product-price">$59.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bag 4 -->
+                <div class="product-card" data-id="bags-4">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1594032194506-7a53a6a5b3c3" alt="Travel Duffel Bag">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Travel Duffel Bag</h3>
+                        <p class="product-description">Durable and spacious duffel bag for travel enthusiasts</p>
+                        <p class="product-price">$119.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bag 5 -->
+                <div class="product-card" data-id="bags-5">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1622560480654-d96214fdc887" alt="Eco-Friendly Canvas Bag">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Eco-Friendly Canvas Bag</h3>
+                        <p class="product-description">Sustainable and stylish canvas bag for eco-conscious shoppers</p>
+                        <p class="product-price">$79.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bag 6 -->
+                <div class="product-card" data-id="bags-6">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" alt="Luxury Clutch Bag">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Luxury Clutch Bag</h3>
+                        <p class="product-description">Elegant clutch bag for formal occasions</p>
+                        <p class="product-price">$89.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Astraronix</h4>
+                <p>Your premium destination for fashion and lifestyle products.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="shoes.html">Shoes</a></li>
+                    <li><a href="clothes.html">Clothes</a></li>
+                    <li><a href="bags.html">Bags</a></li>
+                    <li><a href="beddings.html">Bedding</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>Email: info@astraronix.com</li>
+                    <li>Phone: +254 123 456 789</li>
+                    <li>Address: 123 Fashion Street, Nairobi</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Astraronix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        // Initialize page
+        updateCartCount();
+    </script>
+</body>
+</html>
